@@ -1,0 +1,317 @@
+<!-- Author: Ian Smith -->
+<!-- Team: Group 64 -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><Group 64></title>
+    <!-- import custom css -->
+    <link rel="stylesheet" href="resources/css/style.css">
+    <!-- import font style -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300|Quicksand:300" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Font Awesome: used for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- JQuery and JS functions (mostly listener functions) moved to another file to reduce clutter -->
+    <script type="text/javascript" src="resources/helper.js"></script>
+    <style media="screen">
+      #login, #loggedin {
+        overflow-wrap: break-word;
+        hyphens: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- nav bar that is fixed to top of page -->
+    <nav role="navigation" class="navbar navbar-fixed-top navbar-semi-transparent">
+        <div id="header" class="container">
+          <div class="navbar-header">
+            <!-- top left logo and link to go back to home page -->
+            <a class="navbar-brand" href="/"><b>&ltGroup 64&gt </b><span style="color:rgba(162, 124, 186)" class="fa fa-music"></span></a>
+            <button type="button" class="navbar-toggle navbar-right" data-toggle="collapse" data-target="#3bar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="fa fa-bars" style="color:white;font-size:1.5em"></span>
+          </button>
+          </div>
+          <div class="collapse navbar-collapse mr-auto" id="3bar">
+            <ul class="navbar-nav nav">
+              <li><a href="#home" data-toggle="collapse" data-target="#3bar.in"><b>HOME</b></a></li>
+              <li><a id = 'about_button' href="#about" data-toggle="collapse" data-target="#3bar.in"><b>ABOUT</b></a></li>
+              <li><a href="#contact" data-toggle="collapse" data-target="#3bar.in"><b>CONTACT</b></a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- home container -->
+      <div id="home">
+        <div class="container">
+          <!-- placeholder for when guest joins a party (this is replaced with html that shows guest page) -->
+          <div id = "joined">
+              <div id="guest_joined" class="">
+
+              </div>
+          </div>
+          <!-- this is the default login -->
+          <div id="login">
+            <div class="row">
+              <div class="col-sm-12 text-center">
+                <h1> Simplify Music</h1>
+              </div>
+            </div>
+            <div id='login_block'>
+              <div class="row">
+                <div id="login_button" class="col-sm-12 col-md-6 text-center">
+                  <!-- join a party -->
+                  <button type="button" id = 'join_party' class="btn btn-lg btn-primary btn-xl">Join a Party&nbsp&nbsp&nbsp&nbsp</button>
+                </div>
+                <!-- create a party -->
+                <div id="login_button" class="col-sm-12 col-md-6 text-center">
+                  <a href="/login"><button type="button" id = 'create_party' class="btn btn-lg btn-primary btn-xl">Create a Party</button></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- placeholder divs for when a host logs in with spotfy, replaced by handlebar templates -->
+          <div id="loggedin">
+            <div class="row">
+              <div id='user-profile' >
+
+              </div>
+              <div id= "host-controls">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- about page just has info about group 64, etc -->
+    <div id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 offset-xs-6 texty">
+            <h1 id="result"> What is &ltGroup 64&gt <span class="fa fa-music" style="font-size: 1em;color:rgba(162, 124, 186)"></span> ?</h1>
+            <p> A Spotify web app that simplifies making a playlist for your social events.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 offset-xs-6 texty">
+            <h2 id="result"> How To Use It?</h2>
+            <ul>
+              <li>Choose a playlist from the drop down, have your friends insert the <b>Party ID </b> as the join code and they can vote on the track.</li>
+              <li>Press commit anytime you want to update the playlist based on the votes.</li>
+              <li><b>CAUTION</b> Commits to a playlist REPLACE the tracks on the playlist, so create a new playlist for this app so you don't lose your playlists!</li>
+              <li>Learn about song attributes <a style ="color:white;font-weight:bold" target = "_blank" href="https://beta.developer.spotify.com/documentation/web-api/reference/browse/get-recommendations/#tuneable-track-attributes">here!</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- footer with link to github page  -->
+      <div id = "contact" class="row">
+        <div class="col-12 text-center">
+                <h1 style="color:black"class="love"><a target = "_blank" href="https://github.com/reusablebuffalo/Group64" ><i style="color:red"class="fa fa-code"></i></a> with <i style="color:red"class="fa fa-heart"></i> by &ltGroup64&gt</h1>
+        </div>
+      </div>
+    </div>
+
+<!-- START OF TEMPALTES -->
+    <!-- this is for the host to choose from playlists once they are loggined in -->
+    <script id="user-profile-template" type="text/x-handlebars-template">
+      <div class="col-sm-12 col-md-6 text-center">
+          <div id = 'login_button' class="btn-group">
+            <button type="button" class="btn btn-lg btn-primary btn-xl dropdown-toggle" data-toggle="dropdown">
+            Choose a Playlist <span class="caret"></span></button>
+            <ul class="dropdown-menu" role="menu">
+              {{#each playlists}}
+                <li><a id = "playlist_choice" data-playlistid = {{this.id}} hred="#">{{this.name}}</a></li>
+                {{/each}}
+            </ul>
+          </div>
+      </div>
+      <div class = 'col-sm-12 col-md-6 text-center'>
+          <h3><i class="fa fa-user"></i> {{display_name}}</h3>
+      </div>
+    </script>
+
+    <!-- template for spotify widget  -->
+    <!-- <script id="player-template" type="text/x-handlebars-template">
+      <div class = 'col-sm-12 col-md-6 text-center'>
+        <iframe src='https://open.spotify.com/embed?uri=spotify:user:{{user_id}}:playlist:{{playlist_id}}&theme=white' width='300' height='380' frameborder='0' allowtransparency='true' allow='encrypted-media'></iframe>
+      </div>
+    </script> -->
+
+    <!-- this is the page that loads for a guest just joining a party -->
+    <script id="guest-page-template" type="text/x-handlebars-template">
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <h1> Party ID : {{party_id}} </h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="voting col-sm-12 col-md-6 text-center">
+         <h3>Vote on Attributes</h3>
+         <ul id="categories" class="votey">
+           <li id="danceability">Dance-ability<button id ="buttondownd" class="fa fa-chevron-down"><button id ="buttonmiddled" class="fa fa-circle-o"></button><button id="buttonupd" class="fa fa-chevron-up"></button></li>
+           <li id="energy">Energy<button id ="buttondowne" class="fa fa-chevron-down"><button id ="buttonmiddlee" class="fa fa-circle-o"></button><button id="buttonupe" class="fa fa-chevron-up"></button></li>
+           <li id="speechiness">Speechiness<button id ="buttondowns" class="fa fa-chevron-down"><button id ="buttonmiddles" class="fa fa-circle-o"></button><button id="buttonups" class="fa fa-chevron-up"></button></li>
+           <li id="acousticness">Acousticness<button id ="buttondowna" class="fa fa-chevron-down"><button id ="buttonmiddlea" class="fa fa-circle-o"></button><button id="buttonupa" class="fa fa-chevron-up"></button></li>
+           <li id="valiance">Valence<button id ="buttondownv" class="fa fa-chevron-down"><button id ="buttonmiddlev" class="fa fa-circle-o"></button><button id="buttonupv" class="fa fa-chevron-up"></button></li>
+           <li id="tempo">Tempo<button id ="buttondownt" class="fa fa-chevron-down"><button id ="buttonmiddlet" class="fa fa-circle-o"></button><button id="buttonupt" class="fa fa-chevron-up"></button></li>
+         </ul>
+        </div>
+        <div class="col-sm-12 col-md-6 text-center nowplaying_container">
+          <div class="nowplaying">
+           <h3>Now Playing</h3>
+           <div id='now_playing'>
+             <iframe id = 'guestframe' src="https://open.spotify.com/embed?uri=spotify:user:{{user_id}}:playlist:{{playlist_uri}}" width="100%" height="480px" frameborder="0" allowtransparency="true"></iframe>
+           </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div id = 'login_button' class="col-sm-12 col-md-6 text-center">
+          <button id = "guest_refresh" type="button" class="btn btn-lg btn-primary btn-xl">Refresh Player</button>
+        </div>
+        <div id = 'login_button' class="col-sm-12 col-md-6 text-center">
+          <!-- back button to return main page-->
+          <a href="/"><button type="button" class="btn btn-lg btn-primary btn-xl"> Back</button></a>
+        </div>
+      </div>
+    </script>
+
+    <!-- this is page that loads for host that has authorized with spotify api -->
+    <script id="host-page-template" type="text/x-handlebars-template">
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <h3> Party ID : {{party_id}} </h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="voting col-sm-12 text-center">
+         <h4><b>Current Attribute Values</b></h4>
+         <h4>Dance-ability : {{attr.Danceability}} Energy : {{attr.Energy}} Speechiness : {{attr.Speechiness}} Acousticness : {{attr.Acousticness}} Valence : {{attr.Valence}} Tempo : {{attr.Tempo}} </h4>
+         <ul id="categories" class="votey">
+           <li id="danceability">Dance-ability<button id ="buttondownd" class="fa fa-chevron-down"><button id ="buttonmiddled" class="fa fa-circle-o"></button><button id="buttonupd" class="fa fa-chevron-up"></button></li>
+           <li id="energy">Energy<button id ="buttondowne" class="fa fa-chevron-down"><button id ="buttonmiddlee" class="fa fa-circle-o"></button><button id="buttonupe" class="fa fa-chevron-up"></button></li>
+           <li id="speechiness">Speechiness<button id ="buttondowns" class="fa fa-chevron-down"><button id ="buttonmiddles" class="fa fa-circle-o"></button><button id="buttonups" class="fa fa-chevron-up"></button></li>
+           <li id="acousticness">Acousticness<button id ="buttondowna" class="fa fa-chevron-down"><button id ="buttonmiddlea" class="fa fa-circle-o"></button><button id="buttonupa" class="fa fa-chevron-up"></button></li>
+           <li id="valiance">Valence<button id ="buttondownv" class="fa fa-chevron-down"><button id ="buttonmiddlev" class="fa fa-circle-o"></button><button id="buttonupv" class="fa fa-chevron-up"></button></li>
+           <li id="tempo">Tempo<button id ="buttondownt" class="fa fa-chevron-down"><button id ="buttonmiddlet" class="fa fa-circle-o"></button><button id="buttonupt" class="fa fa-chevron-up"></button></li>
+         </ul>
+        </div>
+        <!-- <div class="col-sm-12 col-md-6 text-center">
+          <div class="nowplaying">
+           <h3>Now Playing </h3>
+           <div id='now_playing'>
+             <iframe id= 'hostframe' src="https://open.spotify.com/embed?uri=spotify:user:{{user_id}}:playlist:{{playlist_uri}}" width="100%" height="480px" frameborder="0" allowtransparency="true"></iframe>
+           </div>
+          </div>
+        </div> -->
+      </div>
+      <div class="row">
+        <div id = 'login_button' class="col-sm-12 col-md-4 text-center">
+          <a target = '_player{{party_id}}' href="https://open.spotify.com/user/{{user_id}}/playlist/{{playlist_uri}}"><button id = "host_refresh" type="button" class="btn btn-lg btn-primary btn-host">Refresh Player</button></a>
+        </div>
+        <div id = 'login_button' class="col-sm-12 col-md-4 text-center">
+          <button data-playlistid = {{playlist_uri}} data-partyid = {{party_id}} value={{party_id}} id = "refresh" type="button" class="btn btn-lg btn-primary btn-host">Commit Votes!</button>
+        </div>
+        <div id = 'login_button' class="col-sm-12 col-md-4 text-center">
+          <a href ="/logout"> <button id = "logout" type="button" class="btn btn-lg btn-primary btn-host">Log Out <span class='fa fa-sign-out'></span></button></a>
+        </div>
+      </div>
+    </script>
+  <!-- end of templates -->
+
+    <!-- LOAD Handlebars for templates-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
+    <!-- function that runs to read hash params and load default pages -->
+    <script>
+      (function() {
+
+        /**
+         * Obtains parameters from the hash of the URL
+         * @return Object
+         */
+        function getHashParams() {
+          var hashParams = {};
+          var e, r = /([^&;=]+)=?([^&;]*)/g,
+              q = window.location.hash.substring(1);
+          while ( e = r.exec(q)) {
+             hashParams[e[1]] = decodeURIComponent(e[2]);
+          }
+          return hashParams;
+        }
+        function removeHash() { //this removes the parameters that were stored in url hash
+            history.pushState("", document.title, window.location.pathname + window.location.search);
+        }
+
+
+        var userProfileSource = document.getElementById('user-profile-template').innerHTML,
+            userProfileTemplate = Handlebars.compile(userProfileSource),
+            userProfilePlaceholder = document.getElementById('user-profile');
+
+        var params = getHashParams(); // parse the URL, we will only need to actually access_token and refresh_token, we can make rest of the calls client side
+        removeHash();
+        if (typeof(Storage) !== "undefined") {
+            // Store
+            localStorage.setItem("user_id", params.user_id);
+            // localStorage.setItem("access_token_timeout", Date()); // will eventually store time that access token expires
+            // Retrieve
+            // document.getElementById("result").innerHTML = localStorage.getItem("test");
+        } else {
+            document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+        }
+
+        $('#joined').hide();
+
+        var user_id = params.user_id,
+            error = params.error,
+            playlist_uri = params.playlist_uri,
+            access_token = params.access_token;
+        if (error) {
+          alert('There was an error during the authentication');
+          $('#login').show();
+          $('#loggedin').hide();
+        } else {
+          if(user_id){
+            $.ajax({ // if authenitaced then load this
+              url: '/host',
+              type: 'GET',
+              // headers : {"user_id" : user_id},
+              json: true,
+              success: function(response){
+                  // console.log(response);
+                  userProfilePlaceholder.innerHTML = userProfileTemplate(response);
+                  $('#login').hide();
+                  $('#loggedin').show();
+                }
+            });
+          } else {
+              // render initial screen
+              // console.log("here");
+              $('#login').show();
+              $('#loggedin').hide();
+          }
+        }
+      })();
+    </script>
+
+    <script>
+    // smooth scrolling jquery, from mozilla docs
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+    });
+    </script>
+
+  </body>
+</html>

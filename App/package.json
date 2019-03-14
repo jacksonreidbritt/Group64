@@ -1,0 +1,29 @@
+{
+  "author": "Group64",
+  "name": "Group64_Spotify_App",
+  "description": "Server that routes requests and makes API calls to manipulate user playlists based on party feedback",
+  "version": "1.0.0",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.3.2",
+    "express": "^4.16.3",
+    "express-flash": "0.0.2",
+    "express-myconnection": "^1.0.4",
+    "express-session": "^1.15.6",
+    "hoek": "^5.0.3",
+    "l": "^0.6.0",
+    "mysql": "^2.15.0",
+    "querystring": "~0.2.0",
+    "request": "^2.83.0",
+    "spotify-web-api-node": "^3.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "mocha": "^5.1.1"
+  },
+  "scripts": {
+    "test": "mocha",
+    "start": "node app.js"
+  }
+}

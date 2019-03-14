@@ -1,0 +1,207 @@
+/* this font family is used everywhere, default font color is black */
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #000;
+    font-weight: 400;
+}
+
+/* navbar settings; make the navbar partially transparent and give padding that scales with viewport size */
+.navbar {
+    background-color: #000;
+    padding: 2vh 2vw;
+    opacity: 0.6;
+    filter: alpha(opacity=60); /* For IE8 and earlier */
+}
+
+#header a {
+      color: #fff;
+      background: #000;
+}
+#header a:hover {
+    color: grey;
+    background: #000;
+}
+#header {
+      font-size:;
+      font-family: 'Montserrat', sans-serif;
+}
+
+/* HOME*/
+
+#home {
+    background: url('https://images.pexels.com/photos/802958/pexels-photo-802958.jpeg') no-repeat center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 110vh;
+    padding-top: 15vh;
+    font-family: 'Quicksand', sans-serif;
+}
+#home h1{
+    font-size: 10vh;
+    color: #fff;
+}
+
+#home h3{
+    font-size: 5vh;
+    color: #fff;
+}
+#login_button {
+  font-size: 5vh;
+  color: #fff;
+}
+
+/*make smaller font for this page*/
+#joined h1 {
+  font-size: 5vh;
+}
+#about{
+      background: url('https://images.pexels.com/photos/159376/turntable-top-view-audio-equipment-159376.jpeg') no-repeat center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      min-height: 110vh;
+      padding-top: 15vh;
+      padding-bottom: 15vh;
+      font-family: 'Quicksand', sans-serif;
+}
+#about {
+    font-size: 5vh;
+    color: #fff;
+}
+#about h1 {
+    font-size: 10vh;
+    color: #fff;
+}
+#about h2 {
+    font-size: 6vh;
+    color: #fff;
+}
+
+.texty {
+/*background-color:rgba(30, 215, 96, 0.5); spotify green */
+background-color: rgba(0,0,0,0.5);
+}
+.votey {
+/*background-color:rgba(30, 215, 96, 0.5); spotify green */
+background-color: rgba(0,0,0,0.3);
+/* background-color: rgba(256,256,256,0.1); */
+}
+
+#login_button .btn-xl {
+    padding: 10px 6vw;
+    margin: 10px;
+    min-width: 6vw;
+    font-size: 1em;
+    border-radius: 15px;
+    background-color: rgba(162, 124, 186, 1);
+    border-color: rgba(162, 124, 186, 1);
+    font-family: 'Quicksand', sans-serif;
+}
+#login_button .btn-xl:hover {;
+    background-color: rgba(162, 124, 186, 0.4);
+    border-color: rgba(162, 124, 186, 0.4);
+}
+
+#login_button .btn-host {
+  padding: 10px 2vw;
+  margin: 10px;
+  font-size: 1em;
+  border-radius: 15px;
+  background-color: rgba(162, 124, 186, 1);
+  border-color: rgba(162, 124, 186, 1);
+  font-family: 'Quicksand', sans-serif;
+}
+#login_button .btn-host:hover {;
+    background-color: rgba(162, 124, 186, 0.4);
+    border-color: rgba(162, 124, 186, 0.4);
+}
+#login_button h3{
+  font-size: 5vh;
+  color: #fff;
+}
+#login_button input{
+  width: 100%;
+  min-width: 300px;
+  height: 8vh;
+  font-size: 1em;
+}
+
+textarea:focus, input:focus, .uneditable-input:focus {
+    border-color: rgba(162, 124, 186, 0.8) !important;
+    box-shadow: 0 1px 1px rgba(162, 124, 186, 0.075) inset, 0 0 8px rgba(162, 124, 186, 0.6) !important;
+    outline: 0 none !important;
+}
+
+
+/*for guestpage*/
+
+#buttonupd, #buttonupe, #buttonups, #buttonupa, #buttonupv, #buttonupt {
+	color: #ecebe8;
+	background-color:transparent;
+	outline: none;
+	border:none;
+	border-radius:100px;
+	margin: 1vh 1vw;
+}
+
+/* style for voting buttons */
+#buttonmiddled, #buttonmiddlee, #buttonmiddles, #buttonmiddlea, #buttonmiddlev, #buttonmiddlet {
+	color: rgba(162, 124, 186, 1);
+	background-color:transparent;
+	outline: none;
+	border:none;
+	border-radius:100px;
+}
+/* style for voting buttons continued */
+#buttondownd, #buttondowne, #buttondowns, #buttondowna, #buttondownv, #buttondownt {
+	color: #ecebe8;
+	background-color:transparent;
+	outline: none;
+	border:none;
+	border-radius:100px;
+	margin: 1vh 1vw;
+}
+
+#categories{
+	display: inline-block;
+	list-style-type: none;
+	font-size: 200%;
+	padding:3vh;
+}
+
+.bup, .bdown{
+	display:inline-block; vertical-align: top;
+	color: black;
+	margin-left: 3vh;
+}
+
+.nowplaying {
+	width: 100%;
+  padding: 0 5vw;
+	margin: 0 auto;
+	text-align:center;
+}
+
+.voting {
+	display: block;
+	width: 100%;
+	margin: 0 auto;
+	text-align:center;
+	/*border-right: 3px solid black;*/
+	color: #ecebe8;
+}
+
+.dropdown-menu {
+  width: 100%;
+  white-space: normal;
+}
+#contact {
+  padding-top: 50vh;
+  padding-bottom: 25vh;
+}
+#contact h1 {
+  font-size: 1em;
+}
